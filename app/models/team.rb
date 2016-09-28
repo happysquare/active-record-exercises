@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
   has_many :players
-  has_many :line_ups
+  has_many :lineups
 
   def forwards
     players.forwards

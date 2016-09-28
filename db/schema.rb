@@ -11,15 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160925111005) do
+ActiveRecord::Schema.define(version: 20160926072310) do
 
   create_table "lineups", force: :cascade do |t|
     t.integer  "home_match_id"
     t.integer  "away_match_id"
     t.integer  "team_id"
-    t.integer  "lhp"
-    t.integer  "thp"
-    t.integer  "hook"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -28,6 +25,17 @@ ActiveRecord::Schema.define(version: 20160925111005) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "player_lineups", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "lineup_id"
+    t.integer  "position_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "player_lineups", ["lineup_id"], name: "index_player_lineups_on_lineup_id"
+  add_index "player_lineups", ["player_id"], name: "index_player_lineups_on_player_id"
 
   create_table "players", force: :cascade do |t|
     t.string   "name"
